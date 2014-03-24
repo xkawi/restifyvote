@@ -1,98 +1,55 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=640" />
+<!doctype html>
+<html lang="en" ng-app="restifyvote">
+<head>
+	<title>Voting</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+	<script src="js/angular.min.js"></script>
+	<script src="js/angular.timer.js"></script>
+</head>
+<body>
 
-    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
-    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+	<div class="container" role="main" ng-controller="MainController">
+		<div class="row">
+			
+			<div class="col-md-12" style="text-align:center"><!--ng-if="start"-->
+				<!--<h3><span>Started - <timer interval="1000" countdown="30">{{minutes}}:{{seconds}}</timer></span></h3>-->
+				<h3>Vote Now!</h3>			
+				<table class="table" style="text-align:center;">
+					<tr>
+						<td ng-repeat="player in rootRef.player_information">
+							<h4>{{player.first_name}} {{player.last_name}} ({{player.votes}})</h4><br />
+							<img width="96px" height="96px" src="{{player.img}}" alt="{{player.id}}" title="{{player.first_name}}">
 
-    <script type="text/javascript" src="javascripts/modernizr.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $('#main_content').headsmart()
-      })
-    </script>
-    <title>Restifyvote by neoborn</title>
-  </head>
-
-  <body>
-    <a id="forkme_banner" href="https://github.com/neoborn/restifyvote">View on GitHub</a>
-    <div class="shell">
-
-      <header>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <h1>Restifyvote</h1>
-            <h2>school project</h2>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-      </header>
-
-      <section id="downloads">
-        <span class="inner">
-          <a href="https://github.com/neoborn/restifyvote/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/neoborn/restifyvote/tarball/master" class="tgz"><em>download</em> .TGZ</a>
-        </span>
-      </section>
+							<br />
+							<p>HP: {{player.health}}<br />District: {{player.district}}<br />Location: {{player.location.latitude}}, {{player.location.longitude}}</p>
+							<button class="btn btn-default" ng-click="voteplayer($index)">Vote</button><!--ng-disabled="{{!start}}"-->
+						</td>
+					</tr>
+				</table>
+				<table class="table" style="text-align:center">
+					<tr>
+						<td ng-repeat="attack in rootRef.attack_methods">
+							<h4>{{attack.name}} ({{attack.votes}})</h4>
+							<img width="96px" height="96px" src="img/{{attack.name}}.png"><br />
+							<button class="btn btn-default" ng-click="voteattack($index)">Vote</button><!--ng-disabled="{{!start}}"-->
+						</td>
+					</tr>
+				</table>				
+				
+			</div>
 
 
-      <span class="banner-fix"></span>
+		</div>
+	</div>
 
-
-      <section id="main_content">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-
-      <footer>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <p>this project by <a href="https://github.com/neoborn">neoborn</a> can be found on <a href="https://github.com/neoborn/restifyvote">GitHub</a></p>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
-        <span class="octocat"></span>
-      </footer>
-
-    </div>
-
-    
-  </body>
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="https://cdn.firebase.com/js/client/1.0.6/firebase.js"></script>
+	<!-- AngularFire Plugin -->
+	<script src="https://cdn.firebase.com/libs/angularfire/0.7.0/angularfire.min.js"></script>
+	<script src="js/main.js"></script>
+	
+</body>
 </html>
