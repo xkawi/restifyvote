@@ -24,7 +24,7 @@ server.post({path: PATH+'/init', version: '0.0.1'}, init_db);
 function showIndex(req, res, next){
 	res.setHeader('content-type', 'text/html');
 	var body = '<html><body style="text-align:center;">';
-	body += '<h3><a href="http://voting-system.s3-website-ap-southeast-1.amazonaws.com/">Start Voting!</a></h3>';
+	body += '<h3><a href="http://neoborn.github.io/restifyvote/">Start Voting!</a></h3>';
 	body += '<p>RESTful EndPoint:<br/>GET /votes/result<br/>POST /votes/init</p>';
 	body += '</body></html>';
 	res.writeHead(200, {
