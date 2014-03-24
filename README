@@ -1,6 +1,15 @@
-Run Commands from Terminal:
+Run these Commands from Terminal:
 
 1. git clone https://github.com/neoborn/restifyvote.git
 2. cd restifyvote
 3. npm install
 4. node server.js
+
+Deployment:
+
+1. Ensure that you have OpenShift Account and setup RHC, command line tool for OpenShift
+2. Run this command from the terminal:
+   rhc create-app <app-name> nodejs-0.10 --from-code https://github.com/neoborn/restifyvote.git
+3. The URL will be ready for you to access
+
+[Reference Tutorial](https://www.openshift.com/blogs/day-27-restify-build-correct-rest-web-services-in-nodejs)
