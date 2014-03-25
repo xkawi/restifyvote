@@ -33,7 +33,7 @@ function showIndex(req, res, next){
 	});
 	res.write(body);
 	res.end();
-	next();
+	//next();
 }
 function getVoteResult(req, res, next){
 	var ref = new Firebase(production_db);
@@ -99,7 +99,7 @@ function getVoteResult(req, res, next){
 		target["result"].target_queue = attack_mostVote.target_queue;
 
 		res.json(target);
-		next();
+		//next();
 	});
 }
 
@@ -152,7 +152,7 @@ function init_db(req, res, next){
 	} else {
 		res.send(200, {"error": "missing POST request body"});
 	}
-	next();
+	//next();
 }
 
 server.listen(port, ipaddress, function(){
