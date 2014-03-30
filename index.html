@@ -14,7 +14,7 @@
 				
 			<div class="col-md-12" ng-if="!start">Not Started yet</div>
 			<div class="col-md-12" style="text-align:center" ng-if="start"><!---->
-				<h3>Vote Now! <span>Started - <timer interval="1000" countdown="60">{{minutes}}:{{seconds}}</timer></span></h3>			
+				<h3>Vote Now! <span><timer interval="1000" countdown="60">{{minutes}}:{{seconds}}</timer></span></h3>			
 				<table class="table" style="text-align:center;">
 					<tr>
 						<td ng-repeat="player in rootRef.player_information">
